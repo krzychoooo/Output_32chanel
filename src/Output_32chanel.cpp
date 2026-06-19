@@ -1,7 +1,11 @@
 #include <Arduino.h>
 #include "Output_32chanel.h"
 
-Output_32chanel::Output_32chanel(/* args */){
+Output_32chanel::Output_32chanel(TCA6416A chanel0x20, TCA6416A chanel0x21, ClosedCube_TCA9546A mixerI2c){
+    this->chanel0x20 = chanel0x20;
+    this->chanel0x21 = chanel0x21;
+    this->mixerI2c = mixerI2c;
+
 }
 
 Output_32chanel::~Output_32chanel(){
@@ -21,5 +25,4 @@ void Output_32chanel::setChanelValue(uint8_t chanel, bool value){
     else{
         chanel0x21.pin_write(hardwareChanel, value);
     }
-    
 }
