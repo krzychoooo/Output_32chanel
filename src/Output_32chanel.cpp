@@ -22,19 +22,23 @@ void Output_32chanel::begin(void){
     }
     
     for (size_t pin = 0; pin < 16; pin++){
-      chanel0x20->pin_write(pin, LOW);
+      chanel0x20->digitalWrite1(pin, LOW);
     }
 
     for (size_t pin = 0; pin < 16; pin++){
-      chanel0x21->pin_write(pin, LOW);
+      chanel0x21->digitalWrite1(pin, LOW);
     }
-  
-    for (size_t i = 0; i < 16; i++){
-      chanel0x20->pin_mode(i, OUTPUT);
-    }
-    for (size_t i = 0; i < 16; i++){
-      chanel0x21->pin_mode(i, OUTPUT);
-    }
+
+    chanel0x20->setPinMode16(0x0000);
+    chanel0x21->setPinMode16(0x0000);
+    // Serial.print("Mode )x20 = "); Serial.println(chanel0x20->getPinMode16(), HEX);
+
+    // for (size_t i = 0; i < 16; i++){
+    //   chanel0x20->setPinMode1(i, 0);
+    // }
+    // for (size_t i = 0; i < 16; i++){
+    //   chanel0x21->setPinMode1(i, 0);
+    // }
 }
 
 
@@ -42,6 +46,12 @@ void Output_32chanel::setChanelValue(uint8_t chanel, bool value){
     mixerI2c->selectChannel(3);
     uint8_t hardwareChanel = this->mixerIndex[chanel];
     
+    // Serial.print("hardwareChanel = "); Serial.println(hardwareChanel); 
+    // Serial.print("value = "); Serial.println(value); 
+    // Serial.print("Mode 0x20 = "); Serial.println(chanel0x20->getPinMode16(), HEX); 
+    // Serial.print("Mode 0x21 = "); Serial.println(chanel0x21->getPinMode16(), HEX); 
+    
+
     if (value){
         this->output32bitRegister |= 1 << chanel;
     }
@@ -50,9 +60,9 @@ void Output_32chanel::setChanelValue(uint8_t chanel, bool value){
     }
 
     if (hardwareChanel < 16){
-        chanel0x20->pin_write(hardwareChanel, value);
+        chanel0x20->digitalWrite1(hardwareChanel, value);
     }
     else{
-        chanel0x21->pin_write(hardwareChanel-16, value);
+        chanel0x21->digitalWrite1(hardwareChanel-16, value);
     }
 }
