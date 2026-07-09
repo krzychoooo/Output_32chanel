@@ -14,3 +14,8 @@ This module is based on two TCA6416A chips.
 <a href="https://tranzystorek.pl/" target="_blank">tranzystorek.pl</a>
 
 
+The bus I2C can be connected via connectors J101 or J102.
+
+![](img/I2C_Connector_pcb.png)
+![](img/I2C_Connector_sch.png)
+
