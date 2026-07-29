@@ -7,7 +7,7 @@ This module is based on two TCA6416A chips.
 * It has galvanic isolation for I2C signals by ISO1540.
 * Each channel has LED indication.
 * One TCA6416 module has address 20 and the other has address 21.
-* The outputs are based on P-type MOSFETs.
+* The outputs are based on P-type MOSFETs SP3401LT2C.
 * Output current of each output 0.5A
 
 ![32-channel I2C output module](img/32ch_out_100.png)

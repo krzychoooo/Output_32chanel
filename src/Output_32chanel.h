@@ -21,6 +21,7 @@ public:
     uint32_t output32bitRegister;
     void begin(void);
     void setChanelValue(uint8_t chanel, bool value);
+    void setChanelValueBitMask(uint32_t mask, uint32_t value);
 };
 
 

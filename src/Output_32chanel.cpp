@@ -66,3 +66,17 @@ void Output_32chanel::setChanelValue(uint8_t chanel, bool value){
         chanel0x21->digitalWrite1(hardwareChanel-16, value);
     }
 }
+
+
+void Output_32chanel::setChanelValueBitMask(uint32_t mask, uint32_t value){
+  bool bitValue;
+  for (size_t i = 0; i < 32; i++){
+    bitValue = value & 0x00000001;
+    if (mask&0x00000001){
+      setChanelValue(i, bitValue);
+    }
+    mask >>= 1;
+    value >>= 1;    
+  }
+  
+}
